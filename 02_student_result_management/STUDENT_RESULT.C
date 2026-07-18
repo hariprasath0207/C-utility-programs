@@ -1,39 +1,65 @@
 #include<stdio.h>
 #include<conio.h>
 
-void enter_marks(int*);
+void enter_marks(int*, int*); 
 void total(int*, int*);
 void average(int, float*);
-void result(float);
+void result(float, int);  
 
-void main()
+int main()
 {
  int choice;
  int s[5]={0};
  int total_marks=0;
  float avg=0.0;
+ int marks_entered = 0;
  clrscr();
  do
  {
- printf("\n\n--STUDENT RESULT MANAGEMENT--");
- printf("\n 1)Enter marks\n 2)Display Total\n 3)Display Average\n 4)Display Result\n 5)Exit");
- printf("\n\n Enter the choice : ");
- scanf("%d",&choice);
+  printf("\n\n--STUDENT RESULT MANAGEMENT--");
+  printf("\n 1)Enter marks\n 2)Display Total\n 3)Display Average\n 4)Display Result\n 5)Exit");
+  printf("\n\n Enter the choice : ");
+  scanf("%d",&choice);
+
   switch(choice)
   {
    case 1:
-    enter_marks(s);
+    enter_marks(s, &marks_entered);
     break;
    case 2:
-    total(s,&total_marks);
-    printf("Total marks : %d",total_marks);
-    break;
+    if(!marks_entered)
+     {
+     printf("Please enter marks first (Option 1)");
+     }
+    else
+     {
+     total(s,&total_marks);
+     printf("Total marks : %d",total_marks);
+     }
+     break;
    case 3:
-    average(total_marks,&avg);
-    printf("Average mark : %.2f",avg);
-    break;
+    if(!marks_entered)
+     {
+     printf("Please enter marks first (Option 1).");
+     }
+    else
+     {
+     total(s,&total_marks);
+     average(total_marks,&avg);
+     printf("Average mark : %.2f",avg);
+     }
+     break;
    case 4:
-    result(avg);
+    if(!marks_entered)
+    {
+     printf("Please enter marks first (Option 1).");
+    }
+    else
+    { f
+     total(s,&total_marks);
+     average(total_marks,&avg);
+     result(avg, total_marks);
+    }
     break;
    case 5:
     printf("**Exiting**");
@@ -45,21 +71,22 @@ void main()
  }while(choice!=5);
 }
 
-void enter_marks(int *s)
+void enter_marks(int *s, int *marks_entered)
 {
  int i=0;
  for(i=0;i<5;i++)
  {
   do
   {
-   printf("Enter the mark for Subject %d : ",i+1);
+   printf("Enter the mark for Subject %d (0-100): ",i+1);
    scanf("%d",&s[i]);
-   if(s[i]>100)
+   if(s[i] < 0 || s[i] > 100)
    {
-    printf("\nInvalid mark! Please enter 100 or below.\n\n");
+    printf("\nInvalid mark! Please enter a value between 0 and 100.\n\n");
    }
-  }while(s[i]>100);
+  }while(s[i] < 0 || s[i] > 100);
  }
+ *marks_entered = 1;
 }
 
 void total(int *s, int *total_marks)
@@ -77,7 +104,7 @@ void average(int total_marks, float *avg)
  *avg=(total_marks/5.0);
 }
 
-void result(float avg)
+void result(float avg, int total_marks)
 {
  if(avg<40)
  {
