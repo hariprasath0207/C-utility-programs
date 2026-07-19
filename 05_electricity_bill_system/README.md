@@ -23,5 +23,6 @@ printf("Total bill for %u units : %.2lf\n", *u, *b);
 *u = 0;
 *b = 0;
 
+```b
 gcc electricity_bill.c -o electricity_bill
 ./electricity_bill
