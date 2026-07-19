@@ -22,8 +22,3 @@ Once the system outputs the computed statement to the screen, it automatically c
 printf("Total bill for %u units : %.2lf\n", *u, *b);
 *u = 0;
 *b = 0;
-
-## 💻 Compilation and Execution
-```bash
-gcc electricity_bill.c -o electricity_bill
-./electricity_bill
