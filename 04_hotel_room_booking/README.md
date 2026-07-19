@@ -1,4 +1,3 @@
-```markdown
 # Hotel Room Booking System
 
 An interactive command-line application simulating room reservation management for a 20-room hotel. The system maps room allocations using integer tracking configurations and enforces transactional loop handling for continuous multi-room processing.
